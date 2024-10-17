@@ -4,23 +4,46 @@ from random import randint;
 
 app = Flask(__name__)
 
-Alunos = []
+aluno_table = []
+docs_por_solicitacao = {"Abono": ["Atestado Médico/Comprovante de Presença"]}
 
 @app.route('/')
 def index():
-    return render_template('index.html', games=Alunos)
+    return render_template('index.html', alunos=aluno_table)
 
 @app.route('/criar', methods=['POST']) 
 def create():
     aluno = Aluno()
     aluno.setNome(request.form['nome'])
-    aluno.setDev(request.form['desenvolvedora'])
-    aluno.setDesc(request.form['descricao'])
-    aluno.append(current_game)
-    print(games)
+    aluno.setEmailInstitucional(request.form['email'])
+    aluno.setNumeroMatricula(request.form['matricula'])
     return redirect('/')
 
-@app.route('/alterar', methods=['POST']) # Rota /alterar
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/abono')
+def abono():
+    return render_template('abono.html',  docs=docs_por_solicitacao['Abono'])
+
+@app.route('/pegar', methods=['POST'])
+def get():
+    email = request.form['email']
+    matri = request.form['matricula']
+    user = [email, matri]
+    aluno_table.append(user)
+    
+    return redirect('/abono')
+
+"""@app.route("/solicitar", method=["POST"])
+def solicitar():
+    solicitacao = Solicitacao()
+    solicitacao.setMatriculaSolicitante(request.form['matricula'])
+    #solicitacao.setData(request.form[])"""
+
+"""@app.route('/alterar', methods=['POST']) # Rota /alterar
 def update():
     old_name = request.form['old_name']
     new_name = request.form['new_name']
@@ -44,5 +67,6 @@ def delete():
             return redirect('/')
     else:
         return "jogo não encontrado"
+"""
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abono de Falta</title>
+  <!-- Direct Bootstrap CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card p-4">
+          <h1 class="text-center">ABONO DE FALTAS</h1>
+          <form action="" method="POST" class="documentos">
+            <div class="mb-3">
+              <label for="nomealuno" class="form-label">Número da Matrícula</label>
+              <input type="text" class="form-control" id="nomealuno" name="nomealuno" placeholder="Digite sua matricula" required>
+            </div>
+            <div class="mb-3">
+              <label for="curso" class="form-label">Curso</label>
+              <input type="text" class="form-control" id="curso" name="curso" placeholder="Digite seu curso"required>
+            </div>
+            <div class="mb-3">
+              <label for="coordenador" class="form-label">Coordenador</label>
+              <input type="text" class="form-control" id="coordenador" name="coordenador" placeholder="Digite seu coordenador"required>
+            </div>
+            {%for doc in docs%}
+              <div class="mb-3">
+                <label for="documentonecess" class="form-label">{{ doc }}</label>
+                <input type="file" class="form-control" id="documentonecess" name="documentonecess" placeholder="Coloque seus documentos" required>
+              </div>
+            {% endfor %}
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Confirmar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (optional but useful for interactions like tooltips, modals, etc.) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

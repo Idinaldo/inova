@@ -7,3 +7,5 @@ __pycache__/
 # ignoring node_modules
 node_modules/
 
+# ignoring deprecated
+deprecated_stuff/
